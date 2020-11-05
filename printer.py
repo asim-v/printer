@@ -1,21 +1,8 @@
 #!/usr/bin/env python
 
-# import argparse
-
-# # help flag provides flag help
-# # store_true actions stores argument as True
-
-# parser = argparse.ArgumentParser()
-   
-# parser.add_argument('-o', '--output', action='store_true', 
-#     help="shows output")
-
-# args = parser.parse_args()
-
-# if args.output:
-#     print("This is some output")
-
-
+# STEPS:
+# 1) Select file in your current directory and wait for it to print
+# 2) Spin your printed pages and insert them back again
  
     
 
@@ -96,16 +83,17 @@ def menu(first,second,filename):
 	print('Imprimir: '+str(filename))
 	i = input('Continuar? [y]/[n]: ')
 	if i in ['y','Y']:
-		for page in tqdm.tqdm(first):
-			printPage(page)
-			
+		if len(first)>0:
+			for page in tqdm.tqdm(first):
+				printPage(page)
+				
 		print(end='\n')
 		i2 = input('Terminado primer lote, imprimir siguiente? [y]/[n]: ')
 		if i2 in ['y','Y']:
 			print(end='\n')
-			for page in tqdm.tqdm(second):
-
-				printPage(page)
+			if len(second)>0:
+				for page in tqdm.tqdm(second[::-1]):
+					printPage(page)
 				
 			print(end='\n')
 			print("Terminado exitosamente:)")
